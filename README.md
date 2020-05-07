@@ -3,7 +3,7 @@ A repository to help setting up Kubernetes environment on Fedora 31 - Created by
 * Preparing linux
 * Install & setup docker engine
 * Install & setup docker compose
-* Install & setup kvm
+* Install kvm
 * Install & setup gcloud (For remote kubernetes cluster)
 * Install & setup minikube (For local kubernetes cluster)
 * Install & setup Metallb (Load Balancer - Optional)
@@ -110,4 +110,31 @@ docker-compose --version
 ```
 
 | ![images/docker-compose.png](images/docker-compose.png) |
+| ------------------------------------------------------------------- |
+
+# Install kvm
+
+KVM is world's strongest, most efficient and most lightweight Hypervisor. It runs directly inside the Linux kernel - as a loadable kernel module. RedHat (world's largest open source company) uses KVM in the heart of it's **RedHat Enterprise Virtualization** product. AWS (the biggest cloud provider) is also moving it's infrastructure from XEN to KVM.
+
+**Note:** This document was written for a computer, which has Fedora Linux as Host OS and KVM as Hypervisor. If you have a different OS or Hypervisor on your computer, then you need to consult a different guide for installing minikube on your computer.
+
+Run following command to install kvm
+
+```
+yum -y groupinstall virtualization
+```
+
+The enable kvm by using following
+```
+systemctl enable libvirtd
+```
+Make sure your user is a member of the group "libvirt" (or "libvirtd"). If not, add it with `gpasswd -a <username> libvirt`. You will need to logout (of the GUI session) and login again for the changes to take effect.
+
+```
+gpasswd -a salman libvirt
+```
+
+Verify with the `id` command:
+
+| ![images/kvm.png](images/kvm.png) |
 | ------------------------------------------------------------------- |
