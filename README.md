@@ -169,3 +169,124 @@ Install kubectl
 yum install -y kubectl
 ```
 # Install & setup minikube (For local kubernetes cluster)
+
+**1 - Without using google cloud sdk
+
+Install minikube:(Run the commands as root)
+```
+curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64 \
+  && chmod +x minikube
+
+mkdir -p /usr/local/bin/
+
+install minikube /usr/local/bin/
+```
+**2 - By using google cloud sdk
+
+If you have Google-Cloud-SDK already installed on your computer, then you should know that it provides lots of packages, such as `kubectl`, *as well as* `minikube`! You can install these using gcloud commands:
+```
+gcloud components list
+
+gcloud components install COMPONENT_ID
+```
+
+In case you installed google-cloud-sdk YUM repository, then installing these packages is as simple as `yum install <package-name>` 
+
+```
+[root@salmanpc ~]# yum --disablerepo="*" --enablerepo="google-cloud-sdk" list available
+Last metadata expiration check: 1:16:01 ago on Thu 16 Apr 2020 09:29:37 PM CEST.
+Available Packages
+google-cloud-sdk.noarch                                                        289.0.0-1            google-cloud-sdk
+google-cloud-sdk-anthos-auth.x86_64                                            289.0.0-1            google-cloud-sdk
+google-cloud-sdk-app-engine-go.x86_64                                          289.0.0-1            google-cloud-sdk
+google-cloud-sdk-app-engine-grpc.x86_64                                        289.0.0-1            google-cloud-sdk
+google-cloud-sdk-app-engine-java.noarch                                        289.0.0-1            google-cloud-sdk
+google-cloud-sdk-app-engine-python.noarch                                      289.0.0-1            google-cloud-sdk
+google-cloud-sdk-app-engine-python-extras.noarch                               289.0.0-1            google-cloud-sdk
+google-cloud-sdk-bigtable-emulator.x86_64                                      289.0.0-1            google-cloud-sdk
+google-cloud-sdk-cbt.x86_64                                                    289.0.0-1            google-cloud-sdk
+google-cloud-sdk-cloud-build-local.x86_64                                      289.0.0-1            google-cloud-sdk
+google-cloud-sdk-datalab.noarch                                                289.0.0-1            google-cloud-sdk
+google-cloud-sdk-datastore-emulator.noarch                                     289.0.0-1            google-cloud-sdk
+google-cloud-sdk-firestore-emulator.noarch                                     289.0.0-1            google-cloud-sdk
+google-cloud-sdk-kind.x86_64                                                   289.0.0-1            google-cloud-sdk
+google-cloud-sdk-kpt.x86_64                                                    289.0.0-1            google-cloud-sdk
+google-cloud-sdk-minikube.x86_64                                               289.0.0-1            google-cloud-sdk
+google-cloud-sdk-pubsub-emulator.noarch                                        289.0.0-1            google-cloud-sdk
+google-cloud-sdk-skaffold.x86_64                                               289.0.0-1            google-cloud-sdk
+google-cloud-sdk-spanner-emulator.x86_64                                       289.0.0-1            google-cloud-sdk
+google-cloud-sdk-tests.noarch                                                  289.0.0-1            google-cloud-sdk
+kubectl.x86_64                                                                 1.18.1-0             google-cloud-sdk
+[root@salmanpc ~]# 
+```
+
+```
+[root@salmanpc ~]# yum search minikube
+Last metadata expiration check: 0:39:56 ago on Thu 16 Apr 2020 09:29:40 PM CEST.
+===================== Name Matched: minikube ======================
+google-cloud-sdk-minikube.x86_64 : Google Cloud SDK
+[root@salmanpc ~]# 
+``` 
+
+### Install the minikube package:
+``` 
+[root@salmanpc ~]# yum -y install google-cloud-sdk-minikube.x86_64
+Last metadata expiration check: 0:41:25 ago on Thu 16 Apr 2020 09:29:40 PM CEST.
+Dependencies resolved.
+===================================================================
+ Package                   Arch   Version   Repository        Size
+===================================================================
+Installing:
+ google-cloud-sdk-minikube x86_64 289.0.0-1 google-cloud-sdk  13 M
+
+Transaction Summary
+===================================================================
+Install  1 Package
+
+Total download size: 13 M
+Installed size: 43 M
+Downloading Packages:
+02311b8ff662232b90e0df30503bba809f 3.2 MB/s |  13 MB     00:04    
+-------------------------------------------------------------------
+Total                              3.2 MB/s |  13 MB     00:04     
+Running transaction check
+Transaction check succeeded.
+Running transaction test
+Transaction test succeeded.
+Running transaction
+  Preparing        :                                           1/1 
+  Installing       : google-cloud-sdk-minikube-289.0.0-1.x86   1/1 
+  Running scriptlet: google-cloud-sdk-minikube-289.0.0-1.x86   1/1 
+  Verifying        : google-cloud-sdk-minikube-289.0.0-1.x86   1/1 
+
+Installed:
+  google-cloud-sdk-minikube-289.0.0-1.x86_64                       
+
+Complete!
+[root@salmanpc ~]#
+``` 
+
+### Setup minikube VM:
+```
+[salman@salmanpc ~]$ minikube start --driver=kvm2
+😄  minikube v1.9.2 on Fedora 31
+    ▪ KUBECONFIG=/home/salman/.kube/config:/home/salman/.kube/kubeadm-cluster.conf
+✨  Using the kvm2 driver based on user configuration
+💾  Downloading driver docker-machine-driver-kvm2:
+    > docker-machine-driver-kvm2.sha256: 65 B / 65 B [-------] 100.00% ? p/s 0s
+    > docker-machine-driver-kvm2: 13.88 MiB / 13.88 MiB  100.00% 2.46 MiB p/s 5
+💿  Downloading VM boot image ...
+    > minikube-v1.9.0.iso.sha256: 65 B / 65 B [--------------] 100.00% ? p/s 0s
+    > minikube-v1.9.0.iso: 174.93 MiB / 174.93 MiB [-] 100.00% 6.20 MiB p/s 29s
+👍  Starting control plane node m01 in cluster minikube
+💾  Downloading Kubernetes v1.18.0 preload ...
+    > preloaded-images-k8s-v2-v1.18.0-docker-overlay2-amd64.tar.lz4: 542.91 MiB
+🔥  Creating kvm2 VM (CPUs=2, Memory=3900MB, Disk=20000MB) ...
+🐳  Preparing Kubernetes v1.18.0 on Docker 19.03.8 ...
+🌟  Enabling addons: default-storageclass, storage-provisioner
+🏄  Done! kubectl is now configured to use "minikube"
+
+❗  /usr/local/bin/kubectl is v1.13.4, which may be incompatible with Kubernetes v1.18.0.
+💡  You can also use 'minikube kubectl -- get pods' to invoke a matching version
+[salman@salmanpc ~]$ 
+```
