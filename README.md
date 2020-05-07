@@ -170,7 +170,7 @@ yum install -y kubectl
 ```
 # Install & setup minikube (For local kubernetes cluster)
 
-**1 - Without using google cloud sdk
+**1 - Without using google cloud sdk**
 
 Install minikube:(Run the commands as root)
 ```
@@ -181,7 +181,7 @@ mkdir -p /usr/local/bin/
 
 install minikube /usr/local/bin/
 ```
-**2 - By using google cloud sdk
+**2 - By using google cloud sdk**
 
 If you have Google-Cloud-SDK already installed on your computer, then you should know that it provides lots of packages, such as `kubectl`, *as well as* `minikube`! You can install these using gcloud commands:
 ```
