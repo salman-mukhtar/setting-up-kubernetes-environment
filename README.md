@@ -138,3 +138,31 @@ Verify with the `id` command:
 
 | ![images/kvm.png](images/kvm.png) |
 | ------------------------------------------------------------------- |
+
+# Install & setup gcloud (For remote kubernetes cluster)
+
+Update YUM with Cloud SDK repo information: (Run as Root)
+```
+tee -a /etc/yum.repos.d/google-cloud-sdk.repo << EOM
+[google-cloud-sdk]
+name=Google Cloud SDK
+baseurl=https://packages.cloud.google.com/yum/repos/cloud-sdk-el7-x86_64
+enabled=1
+gpgcheck=1
+repo_gpgcheck=1
+gpgkey=https://packages.cloud.google.com/yum/doc/yum-key.gpg
+       https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
+EOM
+```
+Install the Cloud SDK:
+```
+yum install google-cloud-sdk
+```
+Run gcloud init to get started:
+```
+gcloud init
+```
+Install kubectl
+```
+yum install -y kubectl
+```
