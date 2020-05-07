@@ -37,7 +37,7 @@ To disable the firewall use following command as Root user
 ```
 systemctl disable firewalld
 ```
-* **Install Docker**
+# Install Docker
 
 1 - Make sure you have latest version of docker. Remove older version of docker if installed. Run following command
 ```
