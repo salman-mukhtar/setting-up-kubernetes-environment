@@ -290,3 +290,13 @@ Complete!
 💡  You can also use 'minikube kubectl -- get pods' to invoke a matching version
 [salman@salmanpc ~]$ 
 ```
+At this point, you should see minikube VM running in KVM:
+
+| ![images/minikube.png](images/minikube.png) |
+| ------------------------------------------------------------------- |
+```
+[salman@salmanpc ~]$ kubectl get nodes
+NAME       STATUS   ROLES    AGE   VERSION
+minikube   Ready    master   2m    v1.18.0
+[salman@salmanpc ~]$ 
+```
