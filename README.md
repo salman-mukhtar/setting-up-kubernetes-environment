@@ -300,3 +300,85 @@ NAME       STATUS   ROLES    AGE   VERSION
 minikube   Ready    master   2m    v1.18.0
 [salman@salmanpc ~]$ 
 ```
+# Install & setup Metallb (Load Balancer - Optional)
+
+Kubernetes does not offer an implementation of network load-balancers (Services of type LoadBalancer) for bare metal clusters. MetalLB aims to redress this imbalance by offering a Network LB implementation that integrates with standard network equipment, so that external services on bare metal clusters also “just work” as much as possible.
+
+**Requirements**
+
+MetalLB requires the following to function:
+
+ *A Kubernetes cluster, running Kubernetes 1.13.0 or later, that does not already have network load-balancing functionality.
+ *A cluster network configuration that can coexist with MetalLB.
+ *Some IPv4 addresses for MetalLB to hand out.
+ *Depending on the operating mode, you may need one or more routers capable of speaking BGP.
+ 
+To install Metallb run following command (As normal user):
+```
+kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.9.3/manifests/namespace.yaml
+
+kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.9.3/manifests/metallb.yaml
+
+# On first install only
+kubectl create secret generic -n metallb-system memberlist --from-literal=secretkey="$(openssl rand -base64 128)"
+```
+
+Now get you minikube ip by using follwogin command:
+
+```
+[salman@localhost ~]$ minikube ip
+192.168.39.127
+[salman@localhost ~]$ ping 192.168.39.127
+PING 192.168.39.127 (192.168.39.127) 56(84) bytes of data.
+64 bytes from 192.168.39.127: icmp_seq=1 ttl=64 time=0.304 ms
+64 bytes from 192.168.39.127: icmp_seq=2 ttl=64 time=0.197 ms
+64 bytes from 192.168.39.127: icmp_seq=3 ttl=64 time=0.415 ms
+--- 192.168.39.127 ping statistics ---
+3 packets transmitted, 3 received, 0% packet loss, time 2077ms
+rtt min/avg/max/mdev = 0.197/0.305/0.415/0.089 ms
+[salman@localhost ~]$ 
+```
+
+Now we have to set an ip range in Metallb config file so that LB can assign ip addresses. We have to change the **addresses** part in the configuration file.
+```
+[salman@localhost ~]$ cat metallb-config.yaml 
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  namespace: metallb-system
+  name: config
+data:
+  config: |
+    address-pools:
+    - name: default
+      protocol: layer2
+      addresses:
+      - 192.168.39.200-192.168.39.250
+[salman@localhost ~]$ 
+```
+
+Now apply the config by using following command:
+```
+[salman@localhost ~]$ kubectl apply -f metallb-config.yaml 
+configmap/config created
+[salman@localhost ~]$ 
+```
+# Install & setup Heml (Optional)
+
+Download Helm binaries from https://helm.sh/docs/intro/install/. Go to the downloads folder and do the following:
+
+```
+root@localhost Downloads]# ls
+google-chrome-stable_current_x86_64.rpm  helm-v2.16.6-linux-amd64.tar.gz
+[root@localhost Downloads]# tar xzf helm-v2.16.6-linux-amd64.tar.gz 
+[root@localhost Downloads]# ls
+google-chrome-stable_current_x86_64.rpm  helm-v2.16.6-linux-amd64.tar.gz  linux-amd64
+[root@localhost Downloads]# cd linux-amd64/
+[root@localhost linux-amd64]# ls
+helm  LICENSE  README.md  tiller
+[root@localhost linux-amd64]# cp helm /usr/local/bin/
+[root@localhost linux-amd64]# cp tiller /usr/local/bin/
+[root@localhost linux-amd64]# 
+```
+
+
