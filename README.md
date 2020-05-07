@@ -30,3 +30,10 @@ With
 
 | ![images/selinux.png](images/selinix.png) |
 | ------------------------------------------------------------------- |
+
+* Disable firewall
+
+To disable the firewall use following command as Root user
+```
+systemctl disable firewalld
+```
