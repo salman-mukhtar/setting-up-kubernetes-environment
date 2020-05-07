@@ -63,11 +63,32 @@ sudo dnf config-manager \
 
 sudo dnf install docker-ce docker-ce-cli containerd.io
  ```
- 
+3 - Add your user to group docker 
+
 Make sure your user is a member of the group "docker". If not, add it with gpasswd -a <username> docker. You will need to logout (of the GUI session) and login again for the changes to take effect. Run the following command as **Root** user.
 
 `gpasswd -a salman docker`
 
+4 - Cgroups Exception
 
+First install grubby by using following command
+```
+yum install -y grubby
+```
 
+For Fedora 31 and higher, you need to enable the [backward compatibility for Cgroups](https://fedoraproject.org/wiki/Common_F31_bugs#Other_software_issues)
 
+```
+grubby --update-kernel=ALL --args="systemd.unified_cgroup_hierarchy=0"
+```
+
+After running the command, you must reboot for the changes to take effect.
+
+5 - Enable & Start Docker
+
+After reboot run following commands to enable and run docker engine.
+
+```
+systemctl enable docker
+systemctl start docker
+```
