@@ -28,5 +28,5 @@ With
 `SELINUX=disabled`
 
 
-| ![images/selinux.png](images/selinix.png) |
+| ![images/01 - selinux.png](images/01 - selinix.png) |
 | ------------------------------------------------------------------- |
