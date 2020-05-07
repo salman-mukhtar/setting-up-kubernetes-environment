@@ -108,3 +108,6 @@ Check if its running
 ```
 docker-compose --version
 ```
+
+| ![images/docker-compose.png](images/docker-compose.png) |
+| ------------------------------------------------------------------- |
