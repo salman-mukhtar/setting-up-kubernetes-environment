@@ -172,7 +172,7 @@ yum install -y kubectl
 
 **1 - Without using google cloud sdk**
 
-Install minikube:(Run the commands as root)
+Install minikube: (Run the commands as root)
 ```
 curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64 \
   && chmod +x minikube
@@ -194,7 +194,7 @@ In case you installed google-cloud-sdk YUM repository, then installing these pac
 
 ```
 [root@salmanpc ~]# yum --disablerepo="*" --enablerepo="google-cloud-sdk" list available
-Last metadata expiration check: 1:16:01 ago on Thu 16 Apr 2020 09:29:37 PM CEST.
+Last metadata expiration check: 1:14:21 ago on Thu 08 May 2020 00:26:10 AM CEST.
 Available Packages
 google-cloud-sdk.noarch                                                        289.0.0-1            google-cloud-sdk
 google-cloud-sdk-anthos-auth.x86_64                                            289.0.0-1            google-cloud-sdk
@@ -222,7 +222,7 @@ kubectl.x86_64                                                                 1
 
 ```
 [root@salmanpc ~]# yum search minikube
-Last metadata expiration check: 0:39:56 ago on Thu 16 Apr 2020 09:29:40 PM CEST.
+Last metadata expiration check: 0:45:15 ago on Thu 08 May 2020 00:27:20 AM CEST.
 ===================== Name Matched: minikube ======================
 google-cloud-sdk-minikube.x86_64 : Google Cloud SDK
 [root@salmanpc ~]# 
@@ -231,7 +231,7 @@ google-cloud-sdk-minikube.x86_64 : Google Cloud SDK
 ### Install the minikube package:
 ``` 
 [root@salmanpc ~]# yum -y install google-cloud-sdk-minikube.x86_64
-Last metadata expiration check: 0:41:25 ago on Thu 16 Apr 2020 09:29:40 PM CEST.
+Last metadata expiration check: 0:47:29 ago on Thu 08 May 2020 00:27:49 AM CEST.
 Dependencies resolved.
 ===================================================================
  Package                   Arch   Version   Repository        Size
