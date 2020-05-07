@@ -20,7 +20,8 @@ vi /etc/selinux/config
 ```
 Change following line (As shown in the picture)
 
-SELINUX=enforced
+`SELINUX=enforced`
  
 With
-SELINUX=disabled
+
+`SELINUX=disabled`
