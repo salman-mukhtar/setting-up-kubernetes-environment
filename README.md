@@ -18,4 +18,8 @@ To disble SELinux do the following as root
 ```
 vi /etc/selinux/config
 ```
-
+Change following line
+SELINUX=enforced
+ 
+With
+SELINUX=disabled
