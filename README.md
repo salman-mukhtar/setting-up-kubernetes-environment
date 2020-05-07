@@ -37,7 +37,7 @@ To disable the firewall use following command as Root user
 ```
 systemctl disable firewalld
 ```
-# Install Docker
+# Install & setup docker engine
 
 1 - Make sure you have latest version of docker. Remove older version of docker if installed. Run following command
 ```
@@ -91,4 +91,20 @@ After reboot run following commands to enable and run docker engine.
 ```
 systemctl enable docker
 systemctl start docker
+```
+# Install & setup docker compose
+
+To install docker-compose run following command
+```
+curl -L "https://github.com/docker/compose/releases/download/1.25.4/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+```
+
+When its done then apply executable permissions to binary
+```
+sudo chmod +x /usr/local/bin/docker-compose
+```
+
+Check if its running
+```
+docker-compose --version
 ```
