@@ -1,4 +1,4 @@
-# How To
+# About the repo:
 A repository to help setting up Kubernetes environment on Fedora 31 - Created by Salman Mukhtar
 * Preparing Linux
 * Install & setup docker engine
