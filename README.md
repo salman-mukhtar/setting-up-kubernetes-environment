@@ -11,7 +11,7 @@ A repository to help setting up Kubernetes environment on Fedora 31 - Created by
 
 # Preparing linux
 
-* Disable SELinux
+* **Disable SELinux**
 
 Linux is regarded as one of the most secure operating systems you can use today, that is because of its illustrious security implementation features such as SELinux. Disabling it makes life easier for installation of Docker, Docker compose and so on.
 
@@ -31,7 +31,7 @@ With
 | ![images/selinux.png](images/selinix.png) |
 | ------------------------------------------------------------------- |
 
-* Disable firewall
+* **Disable firewall**
 
 To disable the firewall use following command as Root user
 ```
