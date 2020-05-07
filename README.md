@@ -26,3 +26,7 @@ Change following line (As shown in the picture)
 With
 
 `SELINUX=disabled`
+
+
+| ![images/selinux.png](images/selinix.png) |
+| ------------------------------------------------------------------- |
