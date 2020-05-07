@@ -63,3 +63,11 @@ sudo dnf config-manager \
 
 sudo dnf install docker-ce docker-ce-cli containerd.io
  ```
+ 
+Make sure your user is a member of the group "docker". If not, add it with gpasswd -a <username> docker. You will need to logout (of the GUI session) and login again for the changes to take effect. Run the following command as **Root** user.
+
+`gpasswd -a salman docker`
+
+
+
+
