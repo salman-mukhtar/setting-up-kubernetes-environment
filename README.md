@@ -4,7 +4,7 @@ A repository to help setting up Kubernetes environment on Fedora 31 - Created by
 * Install & setup docker engine
 * Install & setup docker compose
 * Install kvm
-* Install & setup gcloud & kubectl (For remote kubernetes cluster)
+* Install & setup gcloud sdk & kubectl (For remote kubernetes cluster)
 * Install & setup minikube (For local kubernetes cluster)
   * Without using google cloud sdk
   * By using google cloud sdk
