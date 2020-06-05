@@ -43,7 +43,7 @@ systemctl disable firewalld
 
 1 - Make sure you have latest version of docker. Remove older version of docker if installed. Run following command
 ```
-udo dnf remove docker \
+sudo dnf remove docker \
                   docker-client \
                   docker-client-latest \
                   docker-common \
